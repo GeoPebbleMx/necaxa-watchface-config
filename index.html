@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Necaxa Watchface</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #e10c04;
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .sub {
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .card {
+      display: flex;
+      align-items: center;
+      background: #2a2a2a;
+      border: 2px solid #444;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    .card.sel { border-color: #e10c04; }
+    .preview {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .info h2 { font-size: 16px; margin-bottom: 4px; }
+    .info p  { font-size: 12px; color: #aaa; }
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: #e10c04;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>⚡ Necaxa</h1>
+  <p class="sub">Elige el tema de tu watchface</p>
+
+  <div class="card sel" data-t="0" onclick="sel(0)">
+    <div class="preview" style="background:#000;color:#ffff00;">12</div>
+    <div class="info"><h2>Clásico</h2><p>Fondo negro · Hora amarilla</p></div>
+  </div>
+
+  <div class="card" data-t="1" onclick="sel(1)">
+    <div class="preview" style="background:#e10c04;color:#fff;">12</div>
+    <div class="info"><h2>Necaxa</h2><p>Fondo rojo · Hora blanca</p></div>
+  </div>
+
+  <div class="card" data-t="2" onclick="sel(2)">
+    <div class="preview" style="background:#fff;color:#e10c04;">12</div>
+    <div class="info"><h2>Invertido</h2><p>Fondo blanco · Hora roja</p></div>
+  </div>
+
+  <div class="card" data-t="3" onclick="sel(3)">
+    <div class="preview" style="background:#000;color:#fff;">12</div>
+    <div class="info"><h2>Noche</h2><p>Fondo negro · Hora blanca</p></div>
+  </div>
+
+  <button class="btn" onclick="save()">Guardar</button>
+
+  <script>
+    var s = 0;
+
+    // Leer tema actual desde la URL
+    var params = {};
+    location.search.substring(1).split('&').forEach(function(p) {
+      var pair = p.split('=');
+      if (pair[0]) params[pair[0]] = pair[1];
+    });
+    if (params.theme !== undefined) {
+      s = parseInt(params.theme);
+      sel(s);
+    }
+
+    function sel(i) {
+      s = i;
+      document.querySelectorAll('.card').forEach(function(c) {
+        c.classList.remove('sel');
+      });
+      document.querySelector('[data-t="' + i + '"]').classList.add('sel');
+    }
+
+    function save() {
+      location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify({ theme: s }));
+    }
+  </script>
+</body>
+</html>
