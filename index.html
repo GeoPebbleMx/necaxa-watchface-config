@@ -59,32 +59,21 @@
 </head>
 <body>
   <h1>⚡ Necaxa</h1>
-
   <div class="card" data-t="0" onclick="sel(0)">
     <div class="preview" style="background:#000;color:#ffff00;">12</div>
     <div class="info"><h2>Clásico</h2><p>Fondo negro · Hora amarilla</p></div>
   </div>
-
   <div class="card" data-t="1" onclick="sel(1)">
     <div class="preview" style="background:#e10c04;color:#fff;">12</div>
     <div class="info"><h2>Necaxa</h2><p>Fondo rojo · Hora blanca</p></div>
   </div>
-
   <div class="card" data-t="2" onclick="sel(2)">
     <div class="preview" style="background:#fff;color:#e10c04;">12</div>
     <div class="info"><h2>Invertido</h2><p>Fondo blanco · Hora roja</p></div>
   </div>
-
-  <div class="card" data-t="3" onclick="sel(3)">
-    <div class="preview" style="background:#000;color:#fff;">12</div>
-    <div class="info"><h2>Noche</h2><p>Fondo negro · Hora blanca</p></div>
-  </div>
-
   <button class="btn" onclick="save()">Guardar</button>
-
   <script>
     var s = 0;
-
     // Leer settings desde el hash de la URL (igual que 222Phoenix)
     try {
       var hash = window.location.hash.substring(1);
@@ -95,10 +84,8 @@
         }
       }
     } catch(e) {}
-
     // Marcar el tema actual como seleccionado
     document.querySelector('[data-t="' + s + '"]').classList.add('sel');
-
     function sel(i) {
       s = i;
       document.querySelectorAll('.card').forEach(function(c) {
@@ -106,7 +93,6 @@
       });
       document.querySelector('[data-t="' + i + '"]').classList.add('sel');
     }
-
     function save() {
       var settings = { THEME: s };
       location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(settings));
@@ -114,3 +100,4 @@
   </script>
 </body>
 </html>
+
