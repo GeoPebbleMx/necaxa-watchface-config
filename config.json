@@ -1,0 +1,39 @@
+[
+  {
+    "type": "heading",
+    "defaultValue": "⚡ Necaxa Watchface"
+  },
+  {
+    "type": "section",
+    "items": [
+      {
+        "type": "heading",
+        "defaultValue": "Tema de color"
+      },
+      {
+        "type": "radiogroup",
+        "messageKey": "THEME",
+        "label": "Elige tu tema",
+        "defaultValue": "0",
+        "options": [
+          {
+            "label": "Clásico — Fondo negro · Hora amarilla",
+            "value": "0"
+          },
+          {
+            "label": "Necaxa — Fondo rojo · Hora blanca",
+            "value": "1"
+          },
+          {
+            "label": "Invertido — Fondo blanco · Hora roja",
+            "value": "2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "submit",
+    "defaultValue": "Guardar"
+  }
+]
